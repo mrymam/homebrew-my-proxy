@@ -25,10 +25,21 @@ if test $1 = "none" ; then
   echo "proxy設定を無効化しました"
   git config --global --unset http.proxy
   git config --global --unset https.proxy
+
+  if type "yarn" > /dev/null 2>&1; then
+    yarn config delete proxy
+    yarn config delete https-proxy
+  fi
+
 elif test $1 = "lab" ; then
   echo "研究室設定をしました"
   git config --global http.proxy $MY_PROXY_HTTP
   git config --global https.proxy $MY_PROXY_HTTPS
+
+  if type "yarn" > /dev/null 2>&1; then
+    yarn config set proxy $MY_PROXY_HTTP
+    yarn config set https-proxy $MY_PROXY_HTTPS
+  fi
 else
   echo "設定が見当たりません"
 fi
