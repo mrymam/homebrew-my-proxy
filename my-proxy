@@ -1,6 +1,26 @@
 #!/bin/bash
 export $(cat .env | grep -v ^\#)
 
+if test $1 = "init"; then
+  echo input proxy_http :
+  #一度に複数の変数へ入力、スペースで区切る
+  read proxy_http
+  #結果を表示する。
+  echo "set" $proxy_http
+
+  echo "MY_PROXY_HTTP="$proxy_http > .env
+
+  echo input proxy_https :
+  #一度に複数の変数へ入力、スペースで区切る
+  read proxy_https
+  #結果を表示する。
+  echo "set" $proxy_https
+
+  echo "MY_PROXY_HTTP="$proxy_http >> .env
+
+  exit 2
+fi
+
 if test $1 = "none" ; then
   echo "proxy設定を無効化しました"
   git config --global --unset http.proxy
