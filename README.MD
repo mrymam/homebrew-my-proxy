@@ -1,11 +1,21 @@
 ## 使い方
 
-### 設定
-1. パスを通す
-2. .envファイルに.env.defaultの形式でプロキシを書き込む
-
-### 設定コマンド
+### インストール
 ```
+$ brew ???
+``
+
+
+### 設定
+```
+## プロキシの設定
+$ my-proxy init
+input proxy_http :
+http://example:8080
+
+input proxy_https :
+https://example.com:8080      
+
 # 研究室用のプロキシの設定
 $ my-proxy lab
 
